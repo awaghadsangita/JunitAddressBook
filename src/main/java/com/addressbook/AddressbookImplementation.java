@@ -80,7 +80,7 @@ public class AddressbookImplementation {
         return listIndex;
     }
 
-    public Object editMobileNumber(int listIndex,String newMobileNumber) throws Exception {
+    public Object editMobileNumber(int listIndex,String newMobileNumber){
         try{
             if(listIndex==-1)
             {
@@ -95,6 +95,36 @@ public class AddressbookImplementation {
         }catch(Exception e){
             return e;
         }
+    }
 
+    public Object editAddress(int listIndex, String address, String city, String state, String zip) {
+        try{
+            if(listIndex==-1)
+            {
+                throw new Exception("person addressbook id does not exit");
+            }
+            if (!Pattern.compile("^[a-zA-Z0-9,: -]{2,50}$").matcher(address).matches()) {
+                throw new Exception("address must be minimum two letters long");
+            }
+            if (!Pattern.compile("^[a-zA-Z]{2,50}$").matcher(city).matches()) {
+                throw new Exception("city must be minimum two letters long and Should contain letters only");
+            }
+            if (!Pattern.compile("^[a-zA-Z]{2,50}$").matcher(state).matches()) {
+                throw new Exception("state must be minimum two letters long and Should contain letters only");
+            }
+            if (!Pattern.compile("^[0-9]{6}$").matcher(zip).matches()) {
+                throw new Exception("zip must be 6 digit long");
+            }
+            Address addressObj = new Address();
+            addressObj.setAddress(address);
+            addressObj.setCity(city);
+            addressObj.setState(state);
+            addressObj.setZip(zip);
+            this.personList.get(listIndex).setAddress(addressObj);
+            writeToJsonFile(this.personList);
+            return 1;
+        }catch(Exception e){
+            return e;
+        }
     }
 }

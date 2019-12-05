@@ -88,4 +88,21 @@ public class testCasesAddressBook {
         Object result = obj.editMobileNumber(listIndex, "9011907937");
         Assert.assertEquals("java.lang.Exception: person addressbook id does not exit", result.toString());
     }
+
+    @Test
+    public void givenPersonID_EditPersonAddressSuccessfully_ShouldReturnOne() throws IOException {
+        AddressbookImplementation obj = new AddressbookImplementation();
+        obj.readAddressBook("/home/admin1/IdeaProjects/AddressBook/src/main/resources/MH.json");
+        int listIndex=obj.findPersonRecord(1);
+        int result = (Integer)obj.editAddress(listIndex, "Vikas nagar,Kranti chowk","Aurangabad","MH","431205");
+        Assert.assertEquals(1,result);
+    }
+    @Test
+    public void givenPersonId_EditPersonAddress_ButPersonIdDoesNotExist_ShouldReturnOne() throws Exception {
+        AddressbookImplementation obj = new AddressbookImplementation();
+        obj.readAddressBook("/home/admin1/IdeaProjects/AddressBook/src/main/resources/MH.json");
+        int listIndex=obj.findPersonRecord(10000);
+        Object result = obj.editMobileNumber(listIndex, "9011907937");
+        Assert.assertEquals("java.lang.Exception: person addressbook id does not exit", result.toString());
+    }
 }
