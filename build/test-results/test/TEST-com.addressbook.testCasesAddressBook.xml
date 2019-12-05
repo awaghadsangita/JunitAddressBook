@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="com.addressbook.testCasesAddressBook" tests="1" skipped="0" failures="0" errors="0" timestamp="2019-12-05T06:25:25" hostname="admin1-Lenovo-Product" time="0.187">
+  <properties/>
+  <testcase name="givenPersonInformation_InProperFormat_ShouldReturnOne" classname="com.addressbook.testCasesAddressBook" time="0.187"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,26 @@
+[
+  {
+    "personId": 0,
+    "mobile": "9422329006",
+    "lastName": "awaghad",
+    "firstName": "sangita",
+    "address": {
+      "zip": "431203",
+      "city": "Jalna",
+      "state": "MH",
+      "address": "Madhuban Colony,Old Jalna"
+    }
+  },
+  {
+    "personId": 1,
+    "mobile": "9422329006",
+    "lastName": "awaghad",
+    "firstName": "sangita",
+    "address": {
+      "zip": "431203",
+      "city": "Jalna",
+      "state": "MH",
+      "address": "Madhuban Colony,Old Jalna"
+    }
+  }
+]
