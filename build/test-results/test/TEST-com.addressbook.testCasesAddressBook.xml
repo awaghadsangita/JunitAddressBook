@@ -1,8 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.addressbook.testCasesAddressBook" tests="1" skipped="0" failures="0" errors="0" timestamp="2019-12-05T08:20:13" hostname="admin1-Lenovo-Product" time="0.191">
+<testsuite name="com.addressbook.testCasesAddressBook" tests="1" skipped="0" failures="0" errors="0" timestamp="2019-12-05T09:07:14" hostname="admin1-Lenovo-Product" time="0.166">
   <properties/>
-  <testcase name="givenPersonInformation_InProperFormat_ShouldReturnOne" classname="com.addressbook.testCasesAddressBook" time="0.191"/>
-  <system-out><![CDATA[true
-]]></system-out>
+  <testcase name="givenPersonId_NoTFindPersonRecordSuccessfully_ShouldReturnMinusOne" classname="com.addressbook.testCasesAddressBook" time="0.166"/>
+  <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

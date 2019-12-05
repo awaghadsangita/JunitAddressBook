@@ -69,4 +69,14 @@ public class AddressbookImplementation {
         });
     }
 
+    public int findPersonRecord(int personId) {
+        int listIndex=-1;
+        for(int i=0;i<this.personList.size();i++){
+            if(this.personList.get(i).getPersonId()==personId){
+                listIndex=i;
+                break;
+            }
+        }
+        return listIndex;
+    }
 }
