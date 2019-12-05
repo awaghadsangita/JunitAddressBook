@@ -46,21 +46,20 @@ public class AddressbookImplementation {
             addressObj.setAddress(address);
             addressObj.setCity(city);
             addressObj.setState(state);
-            addressObj.setZip(zip);
+            addressObj.setZip(Integer.valueOf(zip));
             personObj.setAddress(addressObj);
             personObj.setMobile(ph);
             this.personList.add(personObj);
 
-            writeToJsonFile(this.personList);
+            writeToJsonFile(this.personList,new File(this.fileName));
             return 1;
         } catch (Exception e) {
             return e;
         }
     }
 
-
-    public void writeToJsonFile(List<Person> personList) throws IOException {
-        objectmapper.writeValue(new File(this.fileName), personList);
+    public void writeToJsonFile(List<Person> personList,File file) throws IOException {
+        objectmapper.writeValue(file, personList);
     }
 
     public void readAddressBook(String filename) throws IOException {
@@ -90,7 +89,7 @@ public class AddressbookImplementation {
                 throw new Exception("mobile number must be 10 digit long");
             }
             this.personList.get(listIndex).setMobile(newMobileNumber);
-            writeToJsonFile(this.personList);
+            writeToJsonFile(this.personList,new File(this.fileName));
             return 1;
         }catch(Exception e){
             return e;
@@ -120,9 +119,9 @@ public class AddressbookImplementation {
             addressObj.setAddress(address);
             addressObj.setCity(city);
             addressObj.setState(state);
-            addressObj.setZip(zip);
+            addressObj.setZip(Integer.valueOf(zip));
             this.personList.get(listIndex).setAddress(addressObj);
-            writeToJsonFile(this.personList);
+            writeToJsonFile(this.personList,new File(this.fileName));
             return 1;
         }catch(Exception e){
             return e;
@@ -136,10 +135,50 @@ public class AddressbookImplementation {
                 throw new Exception("person addressbook id does not exit");
             }
             this.personList.remove(listIndex);
-            writeToJsonFile(this.personList);
+            writeToJsonFile(this.personList,new File(this.fileName));
             return 1;
         }catch(Exception e){
             return e;
         }
+    }
+
+    public List<Person> sortByLastname() throws IOException {
+        for(int i=0;i<this.personList.size()-1;i++){
+            for(int j=0;j<this.personList.size()-i-1;j++){
+                if(this.personList.get(j).getLastName().compareTo(this.personList.get(j+1).getLastName())>0){
+                    Person tempObj=this.personList.get(j);
+                    this.personList.set(j,this.personList.get(j+1));
+                    this.personList.set(j+1,tempObj);
+                }
+            }
+        }
+        writeToJsonFile(this.personList,new File(this.fileName));
+        return this.personList;
+    }
+
+    public List<Person> sortByZip() throws IOException {
+        for(int i=0;i<this.personList.size()-1;i++){
+            for(int j=0;j<this.personList.size()-i-1;j++){
+                if(this.personList.get(j).getAddress().getZip()>this.personList.get(j+1).getAddress().getZip()){
+                    Person tempObj=this.personList.get(j);
+                    this.personList.set(j,this.personList.get(j+1));
+                    this.personList.set(j+1,tempObj);
+                }
+            }
+        }
+        writeToJsonFile(this.personList,new File(this.fileName));
+        return this.personList;
+    }
+    public void sortByPersonId() throws IOException {
+        for(int i=0;i<this.personList.size()-1;i++){
+            for(int j=0;j<this.personList.size()-i-1;j++){
+                if(this.personList.get(j).getPersonId()>this.personList.get(j+1).getPersonId()){
+                    Person tempObj=this.personList.get(j);
+                    this.personList.set(j,this.personList.get(j+1));
+                    this.personList.set(j+1,tempObj);
+                }
+            }
+        }
+        writeToJsonFile(this.personList,new File(this.fileName));
     }
 }
