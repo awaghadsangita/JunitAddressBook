@@ -145,4 +145,16 @@ public class testCasesAddressBook {
         Assert.assertEquals("java.lang.Exception: given name addressbook already exist", result.toString());
     }
 
+    @Test
+    public void openAddressBookSuccessfully_ShouldReturnOne() {
+        AddresbookManagement obj = new AddresbookManagement();
+        int result=(Integer)obj.openAddressbook("UP");
+        Assert.assertEquals(1,result);
+    }
+    @Test
+    public void openAddressBook_AddressbookNameDoesNotExist_ShouldReturnOne() {
+        AddresbookManagement obj = new AddresbookManagement();
+        Object result=obj.openAddressbook("AP");
+        Assert.assertEquals("java.lang.Exception: given name addressbook does not exist", result.toString());
+    }
 }
