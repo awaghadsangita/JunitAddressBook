@@ -97,8 +97,9 @@ public class AddressbookImplementation {
         }
     }
 
-    public Object editAddress(int listIndex, String address, String city, String state, String zip) {
+    public Object editAddress(int personId, String address, String city, String state, String zip) {
         try{
+            int listIndex=this.findPersonRecord(personId);
             if(listIndex==-1)
             {
                 throw new Exception("person addressbook id does not exit");
@@ -121,6 +122,20 @@ public class AddressbookImplementation {
             addressObj.setState(state);
             addressObj.setZip(zip);
             this.personList.get(listIndex).setAddress(addressObj);
+            writeToJsonFile(this.personList);
+            return 1;
+        }catch(Exception e){
+            return e;
+        }
+    }
+
+    public Object deletePersonFromAddressbook(int personId) {
+        try {
+            int listIndex = this.findPersonRecord(personId);
+            if (listIndex == -1) {
+                throw new Exception("person addressbook id does not exit");
+            }
+            this.personList.remove(listIndex);
             writeToJsonFile(this.personList);
             return 1;
         }catch(Exception e){

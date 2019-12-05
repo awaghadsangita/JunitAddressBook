@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.addressbook.testCasesAddressBook" tests="1" skipped="0" failures="0" errors="0" timestamp="2019-12-05T10:02:22" hostname="admin1-Lenovo-Product" time="0.168">
+<testsuite name="com.addressbook.testCasesAddressBook" tests="1" skipped="0" failures="0" errors="0" timestamp="2019-12-05T10:26:32" hostname="admin1-Lenovo-Product" time="0.18">
   <properties/>
-  <testcase name="givenPersonId_EditPersonAddress_ButPersonIdDoesNotExist_ShouldReturnOne" classname="com.addressbook.testCasesAddressBook" time="0.168"/>
+  <testcase name="givenPersonId_EditDeletePersonFromAddressbook_ButPersonIdDoesNotExist_ShouldReturnOne" classname="com.addressbook.testCasesAddressBook" time="0.18"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>
