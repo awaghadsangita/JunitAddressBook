@@ -79,4 +79,22 @@ public class AddressbookImplementation {
         }
         return listIndex;
     }
+
+    public Object editMobileNumber(int listIndex,String newMobileNumber) throws Exception {
+        try{
+            if(listIndex==-1)
+            {
+                throw new Exception("person addressbook id does not exit");
+            }
+            if (!Pattern.compile("^[0-9]{10}$").matcher(newMobileNumber).matches()) {
+                throw new Exception("mobile number must be 10 digit long");
+            }
+            this.personList.get(listIndex).setMobile(newMobileNumber);
+            writeToJsonFile(this.personList);
+            return 1;
+        }catch(Exception e){
+            return e;
+        }
+
+    }
 }
