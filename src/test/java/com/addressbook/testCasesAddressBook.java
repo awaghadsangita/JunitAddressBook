@@ -13,7 +13,7 @@ public class testCasesAddressBook {
         Object implementationObj = managementObj.openAddressbook("newUP");
         AddressbookImplementation obj = (AddressbookImplementation) implementationObj;
         obj.readAddressBook("/home/admin1/IdeaProjects/AddressBook/src/main/resources/newUP.json");
-        int result = (Integer) obj.addPerson("Nita", "Awaghad", "Madhuban Colony,Old Jalna", "Jalna", "MH", "431203", "9422329006");
+        int result = (Integer) obj.addPerson("Gita", "Awaghad", "Madhuban Colony,Old Jalna", "Jalna", "MH", "431203", "9422329006");
         Assert.assertEquals(1, result);
     }
     @Test
@@ -64,31 +64,35 @@ public class testCasesAddressBook {
 
     @Test
     public void givenPersonId_FindPersonRecordSuccessfully_ShouldReturnPersonListIndex() throws IOException {
-        AddressbookImplementation obj = new AddressbookImplementation();
-        obj.readAddressBook("/home/admin1/IdeaProjects/AddressBook/src/main/resources/MH.json");
+        AddresbookManagement managementObj=new AddresbookManagement();
+        Object implementationObj = managementObj.openAddressbook("newUP");
+        AddressbookImplementation obj = (AddressbookImplementation) implementationObj;
         int result=obj.findPersonRecord(1);
         Assert.assertNotEquals(-1,result);
     }
     @Test
     public void givenPersonId_NoTFindPersonRecordSuccessfully_ShouldReturnMinusOne() throws IOException {
-        AddressbookImplementation obj = new AddressbookImplementation();
-        obj.readAddressBook("/home/admin1/IdeaProjects/AddressBook/src/main/resources/MH.json");
+        AddresbookManagement managementObj=new AddresbookManagement();
+        Object implementationObj = managementObj.openAddressbook("newUP");
+        AddressbookImplementation obj = (AddressbookImplementation) implementationObj;
         int result=obj.findPersonRecord(1000);
         Assert.assertEquals(-1,result);
     }
 
     @Test
     public void givenPersonId_EditPersonMobileNumberSuccessfully_ShouldReturnOne() throws Exception {
-        AddressbookImplementation obj = new AddressbookImplementation();
-        obj.readAddressBook("/home/admin1/IdeaProjects/AddressBook/src/main/resources/MH.json");
+        AddresbookManagement managementObj=new AddresbookManagement();
+        Object implementationObj = managementObj.openAddressbook("newUP");
+        AddressbookImplementation obj = (AddressbookImplementation) implementationObj;
         int listIndex=obj.findPersonRecord(1);
         int result = (Integer)obj.editMobileNumber(listIndex, "9011907937");
         Assert.assertEquals(1,result);
     }
     @Test
     public void givenPersonId_EditPersonMobileNumber_ButPersonIdDoesNotExist_ShouldReturnOne() throws Exception {
-        AddressbookImplementation obj = new AddressbookImplementation();
-        obj.readAddressBook("/home/admin1/IdeaProjects/AddressBook/src/main/resources/MH.json");
+        AddresbookManagement managementObj=new AddresbookManagement();
+        Object implementationObj = managementObj.openAddressbook("newUP");
+        AddressbookImplementation obj = (AddressbookImplementation) implementationObj;
         int listIndex=obj.findPersonRecord(10000);
         Object result = obj.editMobileNumber(listIndex, "9011907937");
         Assert.assertEquals("java.lang.Exception: person addressbook id does not exit", result.toString());
@@ -204,8 +208,8 @@ public class testCasesAddressBook {
     @Test
     public void saveAsAddressBook_ifSaveAsSuccessfully_ShouldReturnOne() {
         AddresbookManagement obj = new AddresbookManagement();
-        Object personObj=obj.openAddressbook("UP");
-        int result=(Integer) obj.saveAsAddresBook(personObj,"newUP");
+        Object personObj=obj.openAddressbook("newUP");
+        int result=(Integer) obj.saveAsAddresBook(personObj,"NewUP");
         Assert.assertEquals(1,result);
     }
     @Test

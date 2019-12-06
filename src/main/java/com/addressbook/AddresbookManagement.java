@@ -82,11 +82,8 @@ public class AddresbookManagement {
                 File file = new File(filename);
                 if (file.createNewFile()) {
                     ((AddressbookImplementation) personObj).writeToJsonFile((((AddressbookImplementation) personObj).getPersonList()), file);
-                    File oldFile = new File(((AddressbookImplementation) personObj).getFileName());
-                    if (oldFile.delete())
-                        return 1;
                 }
-                return 0;
+                return 1;
             } else {
                 throw new Exception("unable to saveAs");
             }

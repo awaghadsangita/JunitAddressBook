@@ -2,15 +2,15 @@
   {
     "lastName": null,
     "personId": 0,
-    "mobile": null,
     "firstName": null,
+    "mobile": null,
     "address": null
   },
   {
     "lastName": "Awaghad",
     "personId": 1,
-    "mobile": "9011907937",
     "firstName": "Sangita",
+    "mobile": "9422329006",
     "address": {
       "zip": 431203,
       "city": "Jalna",
@@ -21,20 +21,8 @@
   {
     "lastName": "Awaghad",
     "personId": 2,
-    "mobile": "9422329006",
     "firstName": "Nita",
-    "address": {
-      "zip": 431203,
-      "city": "Jalna",
-      "state": "MH",
-      "address": "Madhuban Colony,Old Jalna"
-    }
-  },
-  {
-    "lastName": "Awaghad",
-    "personId": 3,
     "mobile": "9422329006",
-    "firstName": "Gita",
     "address": {
       "zip": 431203,
       "city": "Jalna",

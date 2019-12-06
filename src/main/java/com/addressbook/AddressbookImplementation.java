@@ -68,7 +68,8 @@ public class AddressbookImplementation {
             personObj.setMobile(ph);
             this.personList.add(personObj);
 
-            writeToJsonFile(this.personList,new File(this.fileName));
+            AddresbookManagement managementObj = new AddresbookManagement();
+            managementObj.saveAddresBook(this);
 
             return 1;
         } catch (Exception e) {
@@ -76,7 +77,7 @@ public class AddressbookImplementation {
         }
     }
 
-    public void writeToJsonFile(List<Person> personList,File file) throws IOException {
+    public void writeToJsonFile(List<Person> personList, File file) throws IOException {
         objectmapper.writeValue(file, personList);
     }
 
@@ -87,38 +88,39 @@ public class AddressbookImplementation {
     }
 
     public int findPersonRecord(int personId) {
-        int listIndex=-1;
-        for(int i=0;i<this.personList.size();i++){
-            if(this.personList.get(i).getPersonId()==personId){
-                listIndex=i;
+        int listIndex = -1;
+        for (int i = 0; i < this.personList.size(); i++) {
+            if (this.personList.get(i).getPersonId() == personId) {
+                listIndex = i;
                 break;
             }
         }
         return listIndex;
     }
 
-    public Object editMobileNumber(int listIndex,String newMobileNumber){
-        try{
-            if(listIndex==-1)
-            {
+    public Object editMobileNumber(int listIndex, String newMobileNumber) {
+        try {
+            if (listIndex == -1) {
                 throw new Exception("person addressbook id does not exit");
             }
             if (!Pattern.compile("^[0-9]{10}$").matcher(newMobileNumber).matches()) {
                 throw new Exception("mobile number must be 10 digit long");
             }
             this.personList.get(listIndex).setMobile(newMobileNumber);
-            writeToJsonFile(this.personList,new File(this.fileName));
+
+            AddresbookManagement managementObj = new AddresbookManagement();
+            managementObj.saveAddresBook(this);
+
             return 1;
-        }catch(Exception e){
+        } catch (Exception e) {
             return e;
         }
     }
 
     public Object editAddress(int personId, String address, String city, String state, String zip) {
-        try{
-            int listIndex=this.findPersonRecord(personId);
-            if(listIndex==-1)
-            {
+        try {
+            int listIndex = this.findPersonRecord(personId);
+            if (listIndex == -1) {
                 throw new Exception("person addressbook id does not exit");
             }
             if (!Pattern.compile("^[a-zA-Z0-9,: -]{2,50}$").matcher(address).matches()) {
@@ -139,11 +141,11 @@ public class AddressbookImplementation {
             addressObj.setState(state);
             addressObj.setZip(Integer.valueOf(zip));
             this.personList.get(listIndex).setAddress(addressObj);
-            AddresbookManagement managementObj=new AddresbookManagement();
+            AddresbookManagement managementObj = new AddresbookManagement();
             managementObj.saveAddresBook(this);
-            //writeToJsonFile(this.personList,new File(this.fileName));
+
             return 1;
-        }catch(Exception e){
+        } catch (Exception e) {
             return e;
         }
     }
@@ -155,50 +157,51 @@ public class AddressbookImplementation {
                 throw new Exception("person addressbook id does not exit");
             }
             this.personList.remove(listIndex);
-            writeToJsonFile(this.personList,new File(this.fileName));
+            writeToJsonFile(this.personList, new File(this.fileName));
             return 1;
-        }catch(Exception e){
+        } catch (Exception e) {
             return e;
         }
     }
 
     public List<Person> sortByLastname() throws IOException {
-        for(int i=0;i<this.personList.size()-1;i++){
-            for(int j=0;j<this.personList.size()-i-1;j++){
-                if(this.personList.get(j).getLastName().compareTo(this.personList.get(j+1).getLastName())>0){
-                    Person tempObj=this.personList.get(j);
-                    this.personList.set(j,this.personList.get(j+1));
-                    this.personList.set(j+1,tempObj);
+        for (int i = 0; i < this.personList.size() - 1; i++) {
+            for (int j = 0; j < this.personList.size() - i - 1; j++) {
+                if (this.personList.get(j).getLastName().compareTo(this.personList.get(j + 1).getLastName()) > 0) {
+                    Person tempObj = this.personList.get(j);
+                    this.personList.set(j, this.personList.get(j + 1));
+                    this.personList.set(j + 1, tempObj);
                 }
             }
         }
-        writeToJsonFile(this.personList,new File(this.fileName));
+        writeToJsonFile(this.personList, new File(this.fileName));
         return this.personList;
     }
 
     public List<Person> sortByZip() throws IOException {
-        for(int i=0;i<this.personList.size()-1;i++){
-            for(int j=0;j<this.personList.size()-i-1;j++){
-                if(this.personList.get(j).getAddress().getZip()>this.personList.get(j+1).getAddress().getZip()){
-                    Person tempObj=this.personList.get(j);
-                    this.personList.set(j,this.personList.get(j+1));
-                    this.personList.set(j+1,tempObj);
+        for (int i = 0; i < this.personList.size() - 1; i++) {
+            for (int j = 0; j < this.personList.size() - i - 1; j++) {
+                if (this.personList.get(j).getAddress().getZip() > this.personList.get(j + 1).getAddress().getZip()) {
+                    Person tempObj = this.personList.get(j);
+                    this.personList.set(j, this.personList.get(j + 1));
+                    this.personList.set(j + 1, tempObj);
                 }
             }
         }
-        writeToJsonFile(this.personList,new File(this.fileName));
+        writeToJsonFile(this.personList, new File(this.fileName));
         return this.personList;
     }
+
     public void sortByPersonId() throws IOException {
-        for(int i=0;i<this.personList.size()-1;i++){
-            for(int j=0;j<this.personList.size()-i-1;j++){
-                if(this.personList.get(j).getPersonId()>this.personList.get(j+1).getPersonId()){
-                    Person tempObj=this.personList.get(j);
-                    this.personList.set(j,this.personList.get(j+1));
-                    this.personList.set(j+1,tempObj);
+        for (int i = 0; i < this.personList.size() - 1; i++) {
+            for (int j = 0; j < this.personList.size() - i - 1; j++) {
+                if (this.personList.get(j).getPersonId() > this.personList.get(j + 1).getPersonId()) {
+                    Person tempObj = this.personList.get(j);
+                    this.personList.set(j, this.personList.get(j + 1));
+                    this.personList.set(j + 1, tempObj);
                 }
             }
         }
-        writeToJsonFile(this.personList,new File(this.fileName));
+        writeToJsonFile(this.personList, new File(this.fileName));
     }
 }
