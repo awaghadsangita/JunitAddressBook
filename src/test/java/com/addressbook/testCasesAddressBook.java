@@ -190,7 +190,19 @@ public class testCasesAddressBook {
         Object result=obj.saveAddresBook(personObj);
         Assert.assertEquals("java.lang.Exception: data not saved", result.toString());
     }
-
-
+    @Test
+    public void saveAsAddressBook_ifSaveAsSuccessfully_ShouldReturnOne() {
+        AddresbookManagement obj = new AddresbookManagement();
+        Object personObj=obj.openAddressbook("UP");
+        int result=(Integer) obj.saveAsAddresBook(personObj,"newUP");
+        Assert.assertEquals(1,result);
+    }
+    @Test
+    public void saveAsAddressBook_ifUnableToSaveAs_ShouldThrowException() {
+        AddresbookManagement obj = new AddresbookManagement();
+        Object personObj=obj.openAddressbook("AP");
+        Object result=obj.saveAsAddresBook(personObj,"newAP");
+        Assert.assertEquals("java.lang.Exception: unable to saveAs", result.toString());
+    }
 
 }
