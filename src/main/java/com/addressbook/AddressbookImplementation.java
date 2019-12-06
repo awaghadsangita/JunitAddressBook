@@ -30,30 +30,27 @@ public class AddressbookImplementation {
 
     ObjectMapper objectmapper = new ObjectMapper();
 
-    public Object addPerson(String fname, String lname, String address, String city, String state, String zip, String ph) throws Exception {
-        try {
-            System.out.println(Pattern.compile("^[A-Z]{1}[a-zA-Z]{1,20}$").matcher(fname).matches());
+    public int addPerson(String fname, String lname, String address, String city, String state, String zip, String ph) throws AddressBookCustomException, IOException {
             if (!Pattern.compile("^[A-Z]{1}[a-zA-Z]{1,20}$").matcher(fname).matches()) {
-                throw new Exception("firstname must start with Uppercase and contain minimum two letters");
+                throw new AddressBookCustomException(AddressBookCustomException.ExceptionType.INVALID_NAME,"firstname must start with Uppercase and contain minimum two letters");
             }
-
             if (!Pattern.compile("^[A-Z]{1}[a-zA-Z]{1,20}$").matcher(lname).matches()) {
-                throw new Exception("lastname must start with Uppercase and contain minimum two letters");
+                throw new AddressBookCustomException(AddressBookCustomException.ExceptionType.INVALID_NAME,"lastname must start with Uppercase and contain minimum two letters");
             }
             if (!Pattern.compile("^[a-zA-Z0-9,: -]{2,50}$").matcher(address).matches()) {
-                throw new Exception("address must be minimum two letters long");
+                throw new AddressBookCustomException(AddressBookCustomException.ExceptionType.INVALID_ADDRESS,"address must be minimum two letters long");
             }
             if (!Pattern.compile("^[a-zA-Z]{2,50}$").matcher(city).matches()) {
-                throw new Exception("city must be minimum two letters long and Should contain letters only");
+                throw new AddressBookCustomException(AddressBookCustomException.ExceptionType.INVALID_CITY,"city must be minimum two letters long and Should contain letters only");
             }
             if (!Pattern.compile("^[a-zA-Z]{2,50}$").matcher(state).matches()) {
-                throw new Exception("state must be minimum two letters long and Should contain letters only");
+                throw new AddressBookCustomException(AddressBookCustomException.ExceptionType.INVALID_STATE,"state must be minimum two letters long and Should contain letters only");
             }
             if (!Pattern.compile("^[0-9]{6}$").matcher(zip).matches()) {
-                throw new Exception("zip must be 6 digit long");
+                throw new AddressBookCustomException(AddressBookCustomException.ExceptionType.INVLAID_ZIP,"zip must be 6 digit long");
             }
             if (!Pattern.compile("^[0-9]{10}$").matcher(ph).matches()) {
-                throw new Exception("mobile number must be 10 digit long");
+                throw new AddressBookCustomException(AddressBookCustomException.ExceptionType.INVALID_MOBILENUMBER,"mobile number must be 10 digit long");
             }
             Person personObj = new Person();
 
@@ -76,9 +73,6 @@ public class AddressbookImplementation {
             managementObj.saveAddresBook(this);
 
             return 1;
-        } catch (Exception e) {
-            return e;
-        }
     }
 
     public void writeToJsonFile(List<Person> personList, File file) throws IOException {
@@ -102,13 +96,13 @@ public class AddressbookImplementation {
         return listIndex;
     }
 
-    public Object editMobileNumber(int listIndex, String newMobileNumber) {
-        try {
+    public int editMobileNumber(int personid, String newMobileNumber) throws AddressBookCustomException, IOException {
+        int listIndex=this.findPersonRecord(personid);
             if (listIndex == -1) {
-                throw new Exception("person addressbook id does not exit");
+                throw new AddressBookCustomException(AddressBookCustomException.ExceptionType.PERSON_NOT_FOUND,"can not find person");
             }
             if (!Pattern.compile("^[0-9]{10}$").matcher(newMobileNumber).matches()) {
-                throw new Exception("mobile number must be 10 digit long");
+                throw new AddressBookCustomException(AddressBookCustomException.ExceptionType.INVALID_MOBILENUMBER,"mobile number must be 10 digit long");
             }
             this.personList.get(listIndex).setMobile(newMobileNumber);
 
@@ -116,28 +110,24 @@ public class AddressbookImplementation {
             managementObj.saveAddresBook(this);
 
             return 1;
-        } catch (Exception e) {
-            return e;
-        }
     }
 
-    public Object editAddress(int personId, String address, String city, String state, String zip) {
-        try {
+    public int editAddress(int personId, String address, String city, String state, String zip) throws AddressBookCustomException, IOException {
             int listIndex = this.findPersonRecord(personId);
             if (listIndex == -1) {
-                throw new Exception("person addressbook id does not exit");
+                throw new AddressBookCustomException(AddressBookCustomException.ExceptionType.PERSON_NOT_FOUND,"can not find person");
             }
             if (!Pattern.compile("^[a-zA-Z0-9,: -]{2,50}$").matcher(address).matches()) {
-                throw new Exception("address must be minimum two letters long");
+                throw new AddressBookCustomException(AddressBookCustomException.ExceptionType.INVALID_ADDRESS,"address must be minimum two letters long");
             }
             if (!Pattern.compile("^[a-zA-Z]{2,50}$").matcher(city).matches()) {
-                throw new Exception("city must be minimum two letters long and Should contain letters only");
+                throw new AddressBookCustomException(AddressBookCustomException.ExceptionType.INVALID_CITY,"city must be minimum two letters long and Should contain letters only");
             }
             if (!Pattern.compile("^[a-zA-Z]{2,50}$").matcher(state).matches()) {
-                throw new Exception("state must be minimum two letters long and Should contain letters only");
+                throw new AddressBookCustomException(AddressBookCustomException.ExceptionType.INVALID_STATE,"state must be minimum two letters long and Should contain letters only");
             }
             if (!Pattern.compile("^[0-9]{6}$").matcher(zip).matches()) {
-                throw new Exception("zip must be 6 digit long");
+                throw new AddressBookCustomException(AddressBookCustomException.ExceptionType.INVLAID_ZIP,"zip must be 6 digit long");
             }
             Address addressObj = new Address();
             addressObj.setAddress(address);
@@ -150,16 +140,12 @@ public class AddressbookImplementation {
             managementObj.saveAddresBook(this);
 
             return 1;
-        } catch (Exception e) {
-            return e;
-        }
     }
 
-    public Object deletePersonFromAddressbook(int personId) {
-        try {
+    public int deletePersonFromAddressbook(int personId) throws AddressBookCustomException, IOException {
             int listIndex = this.findPersonRecord(personId);
             if (listIndex == -1) {
-                throw new Exception("person addressbook id does not exit");
+                throw new AddressBookCustomException(AddressBookCustomException.ExceptionType.PERSON_NOT_FOUND,"can not find person");
             }
             this.personList.remove(listIndex);
 
@@ -167,9 +153,7 @@ public class AddressbookImplementation {
             managementObj.saveAddresBook(this);
 
             return 1;
-        } catch (Exception e) {
-            return e;
-        }
+
     }
 
     public List<Person> sortByLastname() throws IOException {
