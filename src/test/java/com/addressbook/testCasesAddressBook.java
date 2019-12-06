@@ -137,17 +137,21 @@ public class testCasesAddressBook {
 
     @Test
     public void sortAddressbook_ByLastname_ShouldReturnExpectedValue() throws Exception {
-        AddressbookImplementation obj = new AddressbookImplementation();
-        obj.readAddressBook("/home/admin1/IdeaProjects/AddressBook/src/main/resources/MH.json");
+        AddresbookManagement managementObj=new AddresbookManagement();
+        Object implementationObj = managementObj.openAddressbook("MH");
+        AddressbookImplementation obj = (AddressbookImplementation) implementationObj;
+
         List<Person> personList = obj.sortByLastname();
-        Assert.assertEquals("Giri",personList.get(0).getLastName());
+        Assert.assertEquals("Awaghad",personList.get(0).getLastName());
         obj.sortByPersonId();
     }
 
     @Test
     public void sortAddressbook_ByZip_ShouldReturnExpectedValue() throws Exception {
-        AddressbookImplementation obj = new AddressbookImplementation();
-        obj.readAddressBook("/home/admin1/IdeaProjects/AddressBook/src/main/resources/MH.json");
+        AddresbookManagement managementObj=new AddresbookManagement();
+        Object implementationObj = managementObj.openAddressbook("newUP");
+        AddressbookImplementation obj = (AddressbookImplementation) implementationObj;
+
         List<Person> personList = obj.sortByZip();
         Assert.assertEquals(431203,personList.get(0).getAddress().getZip());
         obj.sortByPersonId();

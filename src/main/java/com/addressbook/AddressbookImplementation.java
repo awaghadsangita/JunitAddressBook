@@ -56,6 +56,7 @@ public class AddressbookImplementation {
                 throw new Exception("mobile number must be 10 digit long");
             }
             Person personObj = new Person();
+
             personObj.setPersonId(personList.get(personList.size() - 1).getPersonId() + 1);
             personObj.setFirstName(fname);
             personObj.setLastName(lname);
@@ -66,6 +67,9 @@ public class AddressbookImplementation {
             addressObj.setZip(Integer.valueOf(zip));
             personObj.setAddress(addressObj);
             personObj.setMobile(ph);
+            if(personList.get(0).getPersonId()==0){
+                personList.remove(0);
+            }
             this.personList.add(personObj);
 
             AddresbookManagement managementObj = new AddresbookManagement();
