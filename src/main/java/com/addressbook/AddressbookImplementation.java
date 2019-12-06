@@ -85,10 +85,10 @@ public class AddressbookImplementation {
         });
     }
 
-    public int findPersonRecord(int personId) {
+    public int findPersonRecord(String ph) {
         int listIndex = -1;
         for (int i = 0; i < this.personList.size(); i++) {
-            if (this.personList.get(i).getPersonId() == personId) {
+            if (this.personList.get(i).getMobile().compareTo(ph)==0) {
                 listIndex = i;
                 break;
             }
@@ -96,8 +96,8 @@ public class AddressbookImplementation {
         return listIndex;
     }
 
-    public int editMobileNumber(int personid, String newMobileNumber) throws AddressBookCustomException, IOException {
-        int listIndex=this.findPersonRecord(personid);
+    public int editMobileNumber(String ph, String newMobileNumber) throws AddressBookCustomException, IOException {
+        int listIndex=this.findPersonRecord(ph);
             if (listIndex == -1) {
                 throw new AddressBookCustomException(AddressBookCustomException.ExceptionType.PERSON_NOT_FOUND,"can not find person");
             }
@@ -112,8 +112,8 @@ public class AddressbookImplementation {
             return 1;
     }
 
-    public int editAddress(int personId, String address, String city, String state, String zip) throws AddressBookCustomException, IOException {
-            int listIndex = this.findPersonRecord(personId);
+    public int editAddress(String ph, String address, String city, String state, String zip) throws AddressBookCustomException, IOException {
+            int listIndex = this.findPersonRecord(ph);
             if (listIndex == -1) {
                 throw new AddressBookCustomException(AddressBookCustomException.ExceptionType.PERSON_NOT_FOUND,"can not find person");
             }
@@ -142,8 +142,8 @@ public class AddressbookImplementation {
             return 1;
     }
 
-    public int deletePersonFromAddressbook(int personId) throws AddressBookCustomException, IOException {
-            int listIndex = this.findPersonRecord(personId);
+    public int deletePersonFromAddressbook(String ph) throws AddressBookCustomException, IOException {
+            int listIndex = this.findPersonRecord(ph);
             if (listIndex == -1) {
                 throw new AddressBookCustomException(AddressBookCustomException.ExceptionType.PERSON_NOT_FOUND,"can not find person");
             }

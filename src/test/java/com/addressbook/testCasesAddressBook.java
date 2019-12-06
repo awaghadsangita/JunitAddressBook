@@ -92,7 +92,7 @@ public class testCasesAddressBook {
             AddresbookManagement managementObj = new AddresbookManagement();
             AddressbookImplementation obj = managementObj.openAddressbook("newUP");
 
-            int result = obj.editMobileNumber(1, "9011907937");
+            int result = obj.editMobileNumber("9422329006", "9011907937");
             Assert.assertEquals(1, result);
         } catch (AddressBookCustomException e) {
             e.printStackTrace();
@@ -107,7 +107,7 @@ public class testCasesAddressBook {
             AddresbookManagement managementObj = new AddresbookManagement();
             AddressbookImplementation obj = managementObj.openAddressbook("newUP");
 
-            int result = obj.editMobileNumber(10000, "9011907937");
+            int result = obj.editMobileNumber("1234567890", "9011907937");
         } catch (IOException e) {
             e.printStackTrace();
         } catch (AddressBookCustomException e) {
@@ -122,7 +122,7 @@ public class testCasesAddressBook {
             AddresbookManagement managementObj = new AddresbookManagement();
             AddressbookImplementation obj = managementObj.openAddressbook("newUP");
 
-            int result = obj.editAddress(1, "Vikas nagar,Kranti chowk", "Aurangabad", "MH", "431205");
+            int result = obj.editAddress("9422329006", "Vikas nagar,Kranti chowk", "Aurangabad", "MH", "431205");
             Assert.assertEquals(1, result);
         } catch (AddressBookCustomException e) {
             e.printStackTrace();
@@ -135,7 +135,7 @@ public class testCasesAddressBook {
             AddresbookManagement managementObj = new AddresbookManagement();
             AddressbookImplementation obj = managementObj.openAddressbook("newUP");
 
-            int result = obj.editAddress(10000, "Vikas nagar,Kranti chowk", "Aurangabad", "MH", "431205");
+            int result = obj.editAddress("1234567890", "Vikas nagar,Kranti chowk", "Aurangabad", "MH", "431205");
         } catch (AddressBookCustomException e) {
             Assert.assertEquals(AddressBookCustomException.ExceptionType.PERSON_NOT_FOUND, e.type);
         }
@@ -148,7 +148,7 @@ public class testCasesAddressBook {
             Object implementationObj = managementObj.openAddressbook("newUP");
             AddressbookImplementation obj = (AddressbookImplementation) implementationObj;
 
-            int result = obj.deletePersonFromAddressbook(1);
+            int result = obj.deletePersonFromAddressbook("9422329006");
             Assert.assertEquals(1, result);
         } catch (AddressBookCustomException e) {
             e.printStackTrace();
@@ -161,7 +161,7 @@ public class testCasesAddressBook {
             AddresbookManagement managementObj = new AddresbookManagement();
             AddressbookImplementation obj = managementObj.openAddressbook("newUP");
 
-            int result = obj.deletePersonFromAddressbook(1000);
+            int result = obj.deletePersonFromAddressbook("1234567890");
         } catch (AddressBookCustomException e) {
             Assert.assertEquals(AddressBookCustomException.ExceptionType.PERSON_NOT_FOUND, e.type);
         }
