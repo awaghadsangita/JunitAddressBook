@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.addressbook.testCasesAddressBook" tests="1" skipped="0" failures="0" errors="0" timestamp="2019-12-06T05:44:38" hostname="admin1-Lenovo-Product" time="0.002">
+<testsuite name="com.addressbook.testCasesAddressBook" tests="1" skipped="0" failures="0" errors="0" timestamp="2019-12-06T06:21:49" hostname="admin1-Lenovo-Product" time="0.178">
   <properties/>
-  <testcase name="saveAsAddressBook_ifUnableToSaveAs_ShouldThrowException" classname="com.addressbook.testCasesAddressBook" time="0.002"/>
-  <system-out><![CDATA[]]></system-out>
+  <testcase name="givenPersonInformation_WithMobileNumberDontFollowRules_ShouldThrowException" classname="com.addressbook.testCasesAddressBook" time="0.178"/>
+  <system-out><![CDATA[true
+]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

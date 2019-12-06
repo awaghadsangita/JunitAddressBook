@@ -69,6 +69,7 @@ public class AddressbookImplementation {
             this.personList.add(personObj);
 
             writeToJsonFile(this.personList,new File(this.fileName));
+
             return 1;
         } catch (Exception e) {
             return e;
@@ -138,7 +139,9 @@ public class AddressbookImplementation {
             addressObj.setState(state);
             addressObj.setZip(Integer.valueOf(zip));
             this.personList.get(listIndex).setAddress(addressObj);
-            writeToJsonFile(this.personList,new File(this.fileName));
+            AddresbookManagement managementObj=new AddresbookManagement();
+            managementObj.saveAddresBook(this);
+            //writeToJsonFile(this.personList,new File(this.fileName));
             return 1;
         }catch(Exception e){
             return e;
