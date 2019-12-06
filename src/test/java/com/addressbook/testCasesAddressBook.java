@@ -93,24 +93,27 @@ public class testCasesAddressBook {
         AddresbookManagement managementObj=new AddresbookManagement();
         Object implementationObj = managementObj.openAddressbook("newUP");
         AddressbookImplementation obj = (AddressbookImplementation) implementationObj;
-        int listIndex=obj.findPersonRecord(10000);
-        Object result = obj.editMobileNumber(listIndex, "9011907937");
+
+        Object result = obj.editMobileNumber(10000, "9011907937");
         Assert.assertEquals("java.lang.Exception: person addressbook id does not exit", result.toString());
     }
 
     @Test
     public void givenPersonID_EditPersonAddressSuccessfully_ShouldReturnOne() throws IOException {
-        AddressbookImplementation obj = new AddressbookImplementation();
-        obj.readAddressBook("/home/admin1/IdeaProjects/AddressBook/src/main/resources/MH.json");
+        AddresbookManagement managementObj=new AddresbookManagement();
+        Object implementationObj = managementObj.openAddressbook("newUP");
+        AddressbookImplementation obj = (AddressbookImplementation) implementationObj;
 
         int result = (Integer)obj.editAddress(1, "Vikas nagar,Kranti chowk","Aurangabad","MH","431205");
         Assert.assertEquals(1,result);
     }
     @Test
     public void givenPersonId_EditPersonAddress_ButPersonIdDoesNotExist_ShouldReturnOne() throws Exception {
-        AddressbookImplementation obj = new AddressbookImplementation();
-        obj.readAddressBook("/home/admin1/IdeaProjects/AddressBook/src/main/resources/MH.json");
-        Object result = obj.editMobileNumber(10000, "9011907937");
+        AddresbookManagement managementObj=new AddresbookManagement();
+        Object implementationObj = managementObj.openAddressbook("newUP");
+        AddressbookImplementation obj = (AddressbookImplementation) implementationObj;
+
+        Object result = obj.editAddress(10000, "Vikas nagar,Kranti chowk","Aurangabad","MH","431205");
         Assert.assertEquals("java.lang.Exception: person addressbook id does not exit", result.toString());
     }
 

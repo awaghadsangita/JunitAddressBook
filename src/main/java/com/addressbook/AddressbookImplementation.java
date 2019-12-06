@@ -141,6 +141,7 @@ public class AddressbookImplementation {
             addressObj.setState(state);
             addressObj.setZip(Integer.valueOf(zip));
             this.personList.get(listIndex).setAddress(addressObj);
+
             AddresbookManagement managementObj = new AddresbookManagement();
             managementObj.saveAddresBook(this);
 
