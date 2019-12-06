@@ -40,7 +40,7 @@ public class AddresbookManagement {
             if (isFound) {
                 AddressbookImplementation obj = new AddressbookImplementation();
                 obj.readAddressBook(filename);
-                return 1;
+                return obj;
             } else {
                 throw new Exception("given name addressbook does not exist");
             }
@@ -49,4 +49,30 @@ public class AddresbookManagement {
             return e;
         }
     }
+
+    public Object closeAddressbook(Object obj) {
+        try{
+            if(obj instanceof AddressbookImplementation){
+                return 1;
+            }else{
+                throw  new Exception("no addressbook is open for close");
+            }
+        }catch(Exception e){
+            return e;
+        }
+    }
+
+    public Object saveAddresBook(Object personObj) {
+        try{
+            if(personObj instanceof AddressbookImplementation){
+                ((AddressbookImplementation) personObj).writeToJsonFile((((AddressbookImplementation) personObj).getPersonList()),new File(((AddressbookImplementation) personObj).getFileName()));
+                return 1;
+            }else{
+                throw new Exception("data not saved");
+            }
+        }catch(Exception e){
+            return e;
+        }
+    }
+
 }

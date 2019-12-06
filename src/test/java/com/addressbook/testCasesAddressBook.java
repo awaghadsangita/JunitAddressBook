@@ -146,10 +146,11 @@ public class testCasesAddressBook {
     }
 
     @Test
-    public void openAddressBookSuccessfully_ShouldReturnOne() {
+    public void openAddressBookSuccessfully_ShouldReturnAddressbookImplementationClassObject() {
         AddresbookManagement obj = new AddresbookManagement();
-        int result=(Integer)obj.openAddressbook("UP");
-        Assert.assertEquals(1,result);
+        Object classObj=obj.openAddressbook("UP");
+        boolean result=classObj instanceof AddressbookImplementation;
+        Assert.assertTrue(result);
     }
     @Test
     public void openAddressBook_AddressbookNameDoesNotExist_ShouldReturnOne() {
@@ -157,4 +158,39 @@ public class testCasesAddressBook {
         Object result=obj.openAddressbook("AP");
         Assert.assertEquals("java.lang.Exception: given name addressbook does not exist", result.toString());
     }
+
+    @Test
+    public void closeAddressBook_ifSuccessfully_ShouldReturnOne() {
+        AddresbookManagement obj = new AddresbookManagement();
+        Object personObj=obj.openAddressbook("UP");
+        int result=(Integer) obj.closeAddressbook(personObj);
+        Assert.assertEquals(1,result);
+    }
+
+    @Test
+    public void closeAddressBook_NoAddressbookIsOpen_ShouldThrowException() {
+        AddresbookManagement obj = new AddresbookManagement();
+        Object personObj=obj.openAddressbook("AP");
+        Object result=obj.closeAddressbook(personObj);
+        Assert.assertEquals("java.lang.Exception: no addressbook is open for close", result.toString());
+    }
+
+    @Test
+    public void saveAddressBook_ifSavedSuccessfully_ShouldReturnOne() {
+        AddresbookManagement obj = new AddresbookManagement();
+        Object personObj=obj.openAddressbook("UP");
+        int result=(Integer) obj.saveAddresBook(personObj);
+        Assert.assertEquals(1,result);
+    }
+
+    @Test
+    public void saveAddressBook_dataNotSaved_ShouldThrowException() {
+        AddresbookManagement obj = new AddresbookManagement();
+        Object personObj=obj.openAddressbook("AP");
+        Object result=obj.saveAddresBook(personObj);
+        Assert.assertEquals("java.lang.Exception: data not saved", result.toString());
+    }
+
+
+
 }

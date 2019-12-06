@@ -11,6 +11,23 @@ import java.util.regex.Pattern;
 public class AddressbookImplementation {
     private List<Person> personList;
     private String fileName;
+
+    public List<Person> getPersonList() {
+        return personList;
+    }
+
+    public void setPersonList(List<Person> personList) {
+        this.personList = personList;
+    }
+
+    public String getFileName() {
+        return fileName;
+    }
+
+    public void setFileName(String fileName) {
+        this.fileName = fileName;
+    }
+
     ObjectMapper objectmapper = new ObjectMapper();
 
     public Object addPerson(String fname, String lname, String address, String city, String state, String zip, String ph) throws Exception {
