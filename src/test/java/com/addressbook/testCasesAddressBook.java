@@ -119,15 +119,18 @@ public class testCasesAddressBook {
 
     @Test
     public void givenPersonID_DeletePersonFromAddressbookSuccessfully_ShouldReturnOne() throws IOException {
-        AddressbookImplementation obj = new AddressbookImplementation();
-        obj.readAddressBook("/home/admin1/IdeaProjects/AddressBook/src/main/resources/MH.json");
+        AddresbookManagement managementObj=new AddresbookManagement();
+        Object implementationObj = managementObj.openAddressbook("newUP");
+        AddressbookImplementation obj = (AddressbookImplementation) implementationObj;
         int result = (Integer)obj.deletePersonFromAddressbook(1);
         Assert.assertEquals(1,result);
     }
     @Test
     public void givenPersonId_DeletePersonFromAddressbook_ButPersonIdDoesNotExist_ShouldReturnOne() throws Exception {
-        AddressbookImplementation obj = new AddressbookImplementation();
-        obj.readAddressBook("/home/admin1/IdeaProjects/AddressBook/src/main/resources/MH.json");
+        AddresbookManagement managementObj=new AddresbookManagement();
+        Object implementationObj = managementObj.openAddressbook("newUP");
+        AddressbookImplementation obj = (AddressbookImplementation) implementationObj;
+
         Object result = obj.deletePersonFromAddressbook(1000);
         Assert.assertEquals("java.lang.Exception: person addressbook id does not exit", result.toString());
     }

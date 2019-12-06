@@ -158,7 +158,10 @@ public class AddressbookImplementation {
                 throw new Exception("person addressbook id does not exit");
             }
             this.personList.remove(listIndex);
-            writeToJsonFile(this.personList, new File(this.fileName));
+
+            AddresbookManagement managementObj = new AddresbookManagement();
+            managementObj.saveAddresBook(this);
+
             return 1;
         } catch (Exception e) {
             return e;
