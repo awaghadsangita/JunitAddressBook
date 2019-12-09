@@ -1,9 +1,85 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testsuite name="com.addressbook.testCasesAddressBook" tests="1" skipped="1" failures="0" errors="0" timestamp="2019-12-06T12:27:12" hostname="admin1-Lenovo-Product" time="2.725">
+<testsuite name="com.addressbook.testCasesAddressBook" tests="24" skipped="0" failures="1" errors="0" timestamp="2019-12-07T06:23:15" hostname="admin1-Lenovo-Product" time="0.342">
   <properties/>
-  <testcase name="closeAddressBook_NoAddressbookIsOpen_ShouldThrowException" classname="com.addressbook.testCasesAddressBook" time="2.725">
-    <skipped/>
+  <testcase name="givenPersonInformation_WithZipDontFollowRules_ShouldThrowException" classname="com.addressbook.testCasesAddressBook" time="0.223"/>
+  <testcase name="closeAddressBook_ifSuccessfully_ShouldReturnOne" classname="com.addressbook.testCasesAddressBook" time="0.011"/>
+  <testcase name="givenPersonInformation_WithFirstNameDontFollowRules_ShouldThrowException" classname="com.addressbook.testCasesAddressBook" time="0.001"/>
+  <testcase name="createdAddressBookSuccssfully_ShouldReturnOne" classname="com.addressbook.testCasesAddressBook" time="0.0"/>
+  <testcase name="createdAddressBook_ifAlreadyExist_ShouldThrowException" classname="com.addressbook.testCasesAddressBook" time="0.0"/>
+  <testcase name="openAddressBook_AddressbookNameDoesNotExist_ShouldReturnOne" classname="com.addressbook.testCasesAddressBook" time="0.0"/>
+  <testcase name="givenPersonInformation_WithMobileNumberDontFollowRules_ShouldThrowException" classname="com.addressbook.testCasesAddressBook" time="0.002"/>
+  <testcase name="sortAddressbook_ByZip_ShouldReturnExpectedValue" classname="com.addressbook.testCasesAddressBook" time="0.027"/>
+  <testcase name="givenPersonInformation_InProperFormat_ShouldReturnOne" classname="com.addressbook.testCasesAddressBook" time="0.006"/>
+  <testcase name="closeAddressBook_NoAddressbookIsOpen_ShouldThrowException" classname="com.addressbook.testCasesAddressBook" time="0.001">
+    <failure message="java.lang.AssertionError: expected:&lt;ADDRESS_NOT_OPEN&gt; but was:&lt;ADDRESSBOOK_NOT_EXIST&gt;" type="java.lang.AssertionError">java.lang.AssertionError: expected:&lt;ADDRESS_NOT_OPEN&gt; but was:&lt;ADDRESSBOOK_NOT_EXIST&gt;
+	at org.junit.Assert.fail(Assert.java:88)
+	at org.junit.Assert.failNotEquals(Assert.java:834)
+	at org.junit.Assert.assertEquals(Assert.java:118)
+	at org.junit.Assert.assertEquals(Assert.java:144)
+	at com.addressbook.testCasesAddressBook.closeAddressBook_NoAddressbookIsOpen_ShouldThrowException(testCasesAddressBook.java:275)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.junit.runners.model.FrameworkMethod$1.runReflectiveCall(FrameworkMethod.java:50)
+	at org.junit.internal.runners.model.ReflectiveCallable.run(ReflectiveCallable.java:12)
+	at org.junit.runners.model.FrameworkMethod.invokeExplosively(FrameworkMethod.java:47)
+	at org.junit.internal.runners.statements.InvokeMethod.evaluate(InvokeMethod.java:17)
+	at org.junit.runners.ParentRunner.runLeaf(ParentRunner.java:325)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:78)
+	at org.junit.runners.BlockJUnit4ClassRunner.runChild(BlockJUnit4ClassRunner.java:57)
+	at org.junit.runners.ParentRunner$3.run(ParentRunner.java:290)
+	at org.junit.runners.ParentRunner$1.schedule(ParentRunner.java:71)
+	at org.junit.runners.ParentRunner.runChildren(ParentRunner.java:288)
+	at org.junit.runners.ParentRunner.access$000(ParentRunner.java:58)
+	at org.junit.runners.ParentRunner$2.evaluate(ParentRunner.java:268)
+	at org.junit.runners.ParentRunner.run(ParentRunner.java:363)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecutor.runTestClass(JUnitTestClassExecutor.java:110)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecutor.execute(JUnitTestClassExecutor.java:58)
+	at org.gradle.api.internal.tasks.testing.junit.JUnitTestClassExecutor.execute(JUnitTestClassExecutor.java:38)
+	at org.gradle.api.internal.tasks.testing.junit.AbstractJUnitTestClassProcessor.processTestClass(AbstractJUnitTestClassProcessor.java:62)
+	at org.gradle.api.internal.tasks.testing.SuiteTestClassProcessor.processTestClass(SuiteTestClassProcessor.java:51)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.dispatch.ContextClassLoaderDispatch.dispatch(ContextClassLoaderDispatch.java:32)
+	at org.gradle.internal.dispatch.ProxyDispatchAdapter$DispatchingInvocationHandler.invoke(ProxyDispatchAdapter.java:93)
+	at com.sun.proxy.$Proxy2.processTestClass(Unknown Source)
+	at org.gradle.api.internal.tasks.testing.worker.TestWorker.processTestClass(TestWorker.java:118)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:35)
+	at org.gradle.internal.dispatch.ReflectionDispatch.dispatch(ReflectionDispatch.java:24)
+	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:175)
+	at org.gradle.internal.remote.internal.hub.MessageHubBackedObjectConnection$DispatchWrapper.dispatch(MessageHubBackedObjectConnection.java:157)
+	at org.gradle.internal.remote.internal.hub.MessageHub$Handler.run(MessageHub.java:404)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:63)
+	at org.gradle.internal.concurrent.ManagedExecutorImpl$1.run(ManagedExecutorImpl.java:46)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at org.gradle.internal.concurrent.ThreadFactoryImpl$ManagedThreadRunnable.run(ThreadFactoryImpl.java:55)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+</failure>
   </testcase>
+  <testcase name="givenPersonInformation_WithCityDontFollowRules_ShouldThrowException" classname="com.addressbook.testCasesAddressBook" time="0.008"/>
+  <testcase name="givenPersonID_EditPersonAddressSuccessfully_ShouldReturnOne" classname="com.addressbook.testCasesAddressBook" time="0.008"/>
+  <testcase name="saveAddressBook_dataNotSaved_ShouldThrowException" classname="com.addressbook.testCasesAddressBook" time="0.0"/>
+  <testcase name="saveAddressBook_ifSavedSuccessfully_ShouldReturnOne" classname="com.addressbook.testCasesAddressBook" time="0.011"/>
+  <testcase name="givenPersonId_EditPersonMobileNumberSuccessfully_ShouldReturnOne" classname="com.addressbook.testCasesAddressBook" time="0.007"/>
+  <testcase name="openAddressBookSuccessfully_ShouldReturnAddressbookImplementationClassObject" classname="com.addressbook.testCasesAddressBook" time="0.001"/>
+  <testcase name="sortAddressbook_ByLastname_ShouldReturnExpectedValue" classname="com.addressbook.testCasesAddressBook" time="0.003"/>
+  <testcase name="givenPersonInformation_WithStateDontFollowRules_ShouldThrowException" classname="com.addressbook.testCasesAddressBook" time="0.003"/>
+  <testcase name="givenPersonId_DeletePersonFromAddressbook_ButPersonIdDoesNotExist_ShouldReturnOne" classname="com.addressbook.testCasesAddressBook" time="0.002"/>
+  <testcase name="saveAsAddressBook_ifUnableToSaveAs_ShouldThrowException" classname="com.addressbook.testCasesAddressBook" time="0.004"/>
+  <testcase name="saveAsAddressBook_ifSaveAsSuccessfully_ShouldReturnOne" classname="com.addressbook.testCasesAddressBook" time="0.003"/>
+  <testcase name="givenPersonId_EditPersonAddress_ButPersonIdDoesNotExist_ShouldReturnOne" classname="com.addressbook.testCasesAddressBook" time="0.003"/>
+  <testcase name="givenPersonID_DeletePersonFromAddressbookSuccessfully_ShouldReturnOne" classname="com.addressbook.testCasesAddressBook" time="0.004"/>
+  <testcase name="givenPersonId_EditPersonMobileNumber_ButPersonIdDoesNotExist_ShouldReturnOne" classname="com.addressbook.testCasesAddressBook" time="0.001"/>
   <system-out><![CDATA[]]></system-out>
   <system-err><![CDATA[]]></system-err>
 </testsuite>

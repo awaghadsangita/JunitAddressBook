@@ -11,9 +11,9 @@ public class testCasesAddressBook {
     public void givenPersonInformation_InProperFormat_ShouldReturnOne() {
         try {
             AddresbookManagement managementObj = new AddresbookManagement();
-            AddressbookImplementation obj = managementObj.openAddressbook("newUP");
-            obj.readAddressBook("/home/admin1/IdeaProjects/AddressBook/src/main/resources/newUP.json");
-            int result = (Integer) obj.addPerson("Gita", "Awaghad", "Madhuban Colony,Old Jalna", "Jalna", "MH", "431203", "9422329006");
+            AddressbookImplementation addressbookImplementation = managementObj.openAddressbook("newUP");
+            addressbookImplementation.readAddressBook("/home/admin1/IdeaProjects/AddressBook/src/main/resources/newUP.json");
+            int result = (Integer) addressbookImplementation.addPerson("Gita", "Awaghad", "Madhuban Colony,Old Jalna", "Jalna", "MH", "431203", "9422329006");
             Assert.assertEquals(1, result);
         } catch (IOException e) {
             e.printStackTrace();
@@ -26,9 +26,9 @@ public class testCasesAddressBook {
     public void givenPersonInformation_WithFirstNameDontFollowRules_ShouldThrowException() {
         try {
             AddresbookManagement managementObj = new AddresbookManagement();
-            AddressbookImplementation obj = managementObj.openAddressbook("newUP");
-            obj.readAddressBook("/home/admin1/IdeaProjects/AddressBook/src/main/resources/newUP.json");
-            int result = obj.addPerson("s", "Awaghad", "Madhuban Colony,Old Jalna", "Jalna", "MH", "431203", "9422329006");
+            AddressbookImplementation addressbookImplementation = managementObj.openAddressbook("newUP");
+            addressbookImplementation.readAddressBook("/home/admin1/IdeaProjects/AddressBook/src/main/resources/newUP.json");
+            int result = addressbookImplementation.addPerson("s", "Awaghad", "Madhuban Colony,Old Jalna", "Jalna", "MH", "431203", "9422329006");
         } catch (AddressBookCustomException e) {
             Assert.assertEquals(AddressBookCustomException.ExceptionType.INVALID_NAME, e.type);
         } catch (IOException e) {
@@ -37,52 +37,61 @@ public class testCasesAddressBook {
     }
 
     @Test
-    public void givenPersonInformation_WithCityDontFollowRules_ShouldThrowException() throws IOException {
+    public void givenPersonInformation_WithCityDontFollowRules_ShouldThrowException() {
 
         try {
             AddresbookManagement managementObj = new AddresbookManagement();
-            AddressbookImplementation obj = managementObj.openAddressbook("newUP");
-            obj.readAddressBook("/home/admin1/IdeaProjects/AddressBook/src/main/resources/newUP.json");
-            int result = obj.addPerson("Sangita", "Awaghad", "Madhuban Colony,Old Jalna", "Jalna11", "MH", "431203", "9422329006");
+            AddressbookImplementation addressbookImplementation = managementObj.openAddressbook("newUP");
+            addressbookImplementation.readAddressBook("/home/admin1/IdeaProjects/AddressBook/src/main/resources/newUP.json");
+            int result = addressbookImplementation.addPerson("Sangita", "Awaghad", "Madhuban Colony,Old Jalna", "Jalna11", "MH", "431203", "9422329006");
         } catch (AddressBookCustomException e) {
             Assert.assertEquals(AddressBookCustomException.ExceptionType.INVALID_CITY, e.type);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
     @Test
-    public void givenPersonInformation_WithStateDontFollowRules_ShouldThrowException() throws IOException {
+    public void givenPersonInformation_WithStateDontFollowRules_ShouldThrowException()  {
         try {
             AddresbookManagement managementObj = new AddresbookManagement();
-            AddressbookImplementation obj = managementObj.openAddressbook("newUP");
-            obj.readAddressBook("/home/admin1/IdeaProjects/AddressBook/src/main/resources/newUP.json");
+            AddressbookImplementation addressbookImplementation = managementObj.openAddressbook("newUP");
+            addressbookImplementation.readAddressBook("/home/admin1/IdeaProjects/AddressBook/src/main/resources/newUP.json");
 
-            int result = obj.addPerson("Sangita", "Awaghad", "Madhuban Colony,Old Jalna", "Jalna", "MH11", "431203", "9422329006");
+            int result = addressbookImplementation.addPerson("Sangita", "Awaghad", "Madhuban Colony,Old Jalna", "Jalna", "MH11", "431203", "9422329006");
         } catch (AddressBookCustomException e) {
             Assert.assertEquals(AddressBookCustomException.ExceptionType.INVALID_STATE, e.type);
+        } catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
     @Test
-    public void givenPersonInformation_WithZipDontFollowRules_ShouldThrowException() throws IOException {
+    public void givenPersonInformation_WithZipDontFollowRules_ShouldThrowException() {
         try {
             AddresbookManagement managementObj = new AddresbookManagement();
-            AddressbookImplementation obj = managementObj.openAddressbook("newUP");
-            obj.readAddressBook("/home/admin1/IdeaProjects/AddressBook/src/main/resources/newUP.json");
-            int result = obj.addPerson("Sangita", "Awaghad", "Madhuban Colony,Old Jalna", "Jalna", "MH", "43120311", "9422329006");
+            AddressbookImplementation addressbookImplementation = managementObj.openAddressbook("newUP");
+
+            addressbookImplementation.readAddressBook("/home/admin1/IdeaProjects/AddressBook/src/main/resources/newUP.json");
+            int result = addressbookImplementation.addPerson("Sangita", "Awaghad", "Madhuban Colony,Old Jalna", "Jalna", "MH", "43120311", "9422329006");
         } catch (AddressBookCustomException e) {
             Assert.assertEquals(AddressBookCustomException.ExceptionType.INVLAID_ZIP, e.type);
+        }catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
     @Test
-    public void givenPersonInformation_WithMobileNumberDontFollowRules_ShouldThrowException() throws IOException {
+    public void givenPersonInformation_WithMobileNumberDontFollowRules_ShouldThrowException() {
         try {
             AddresbookManagement managementObj = new AddresbookManagement();
-            AddressbookImplementation obj = managementObj.openAddressbook("newUP");
-            obj.readAddressBook("/home/admin1/IdeaProjects/AddressBook/src/main/resources/newUP.json");
-            int result = obj.addPerson("Sangita", "Awaghad", "Madhuban Colony,Old Jalna", "Jalna", "MH", "431203", "942232900611");
+            AddressbookImplementation  addressbookImplementation = managementObj.openAddressbook("newUP");
+            addressbookImplementation.readAddressBook("/home/admin1/IdeaProjects/AddressBook/src/main/resources/newUP.json");
+            int result = addressbookImplementation.addPerson("Sangita", "Awaghad", "Madhuban Colony,Old Jalna", "Jalna", "MH", "431203", "942232900611");
         } catch (AddressBookCustomException e) {
             Assert.assertEquals(AddressBookCustomException.ExceptionType.INVALID_MOBILENUMBER, e.type);
+        }catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
@@ -90,9 +99,9 @@ public class testCasesAddressBook {
     public void givenPersonId_EditPersonMobileNumberSuccessfully_ShouldReturnOne() {
         try {
             AddresbookManagement managementObj = new AddresbookManagement();
-            AddressbookImplementation obj = managementObj.openAddressbook("newUP");
+            AddressbookImplementation addressbookImplementation = managementObj.openAddressbook("newUP");
 
-            int result = obj.editMobileNumber("9422329006", "9011907937");
+            int result = addressbookImplementation.editMobileNumber("9422329006", "9011907937");
             Assert.assertEquals(1, result);
         } catch (AddressBookCustomException e) {
             e.printStackTrace();
@@ -105,9 +114,9 @@ public class testCasesAddressBook {
     public void givenPersonId_EditPersonMobileNumber_ButPersonIdDoesNotExist_ShouldReturnOne() {
         try {
             AddresbookManagement managementObj = new AddresbookManagement();
-            AddressbookImplementation obj = managementObj.openAddressbook("newUP");
+            AddressbookImplementation addressbookImplementation = managementObj.openAddressbook("newUP");
 
-            int result = obj.editMobileNumber("1234567890", "9011907937");
+            int result = addressbookImplementation.editMobileNumber("1234567890", "9011907937");
         } catch (IOException e) {
             e.printStackTrace();
         } catch (AddressBookCustomException e) {
@@ -117,66 +126,71 @@ public class testCasesAddressBook {
     }
 
     @Test
-    public void givenPersonID_EditPersonAddressSuccessfully_ShouldReturnOne() throws IOException {
+    public void givenPersonID_EditPersonAddressSuccessfully_ShouldReturnOne() {
         try {
             AddresbookManagement managementObj = new AddresbookManagement();
-            AddressbookImplementation obj = managementObj.openAddressbook("newUP");
-
-            int result = obj.editAddress("9422329006", "Vikas nagar,Kranti chowk", "Aurangabad", "MH", "431205");
+            AddressbookImplementation addressbookImplementation = managementObj.openAddressbook("newUP");
+            int result = addressbookImplementation.editAddress("9422329006", "Vikas nagar,Kranti chowk", "Aurangabad", "MH", "431205");
             Assert.assertEquals(1, result);
         } catch (AddressBookCustomException e) {
+            e.printStackTrace();
+        }catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     @Test
-    public void givenPersonId_EditPersonAddress_ButPersonIdDoesNotExist_ShouldReturnOne() throws IOException {
+    public void givenPersonId_EditPersonAddress_ButPersonIdDoesNotExist_ShouldReturnOne(){
         try {
             AddresbookManagement managementObj = new AddresbookManagement();
-            AddressbookImplementation obj = managementObj.openAddressbook("newUP");
-
-            int result = obj.editAddress("1234567890", "Vikas nagar,Kranti chowk", "Aurangabad", "MH", "431205");
+            AddressbookImplementation addressbookImplementation = managementObj.openAddressbook("newUP");
+            int result = addressbookImplementation.editAddress("1234567890", "Vikas nagar,Kranti chowk", "Aurangabad", "MH", "431205");
         } catch (AddressBookCustomException e) {
             Assert.assertEquals(AddressBookCustomException.ExceptionType.PERSON_NOT_FOUND, e.type);
-        }
-    }
-
-    @Test
-    public void givenPersonID_DeletePersonFromAddressbookSuccessfully_ShouldReturnOne() throws IOException {
-        try {
-            AddresbookManagement managementObj = new AddresbookManagement();
-            Object implementationObj = managementObj.openAddressbook("newUP");
-            AddressbookImplementation obj = (AddressbookImplementation) implementationObj;
-
-            int result = obj.deletePersonFromAddressbook("9422329006");
-            Assert.assertEquals(1, result);
-        } catch (AddressBookCustomException e) {
+        }catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     @Test
-    public void givenPersonId_DeletePersonFromAddressbook_ButPersonIdDoesNotExist_ShouldReturnOne() throws IOException {
+    public void givenPersonID_DeletePersonFromAddressbookSuccessfully_ShouldReturnOne() {
         try {
             AddresbookManagement managementObj = new AddresbookManagement();
-            AddressbookImplementation obj = managementObj.openAddressbook("newUP");
-
-            int result = obj.deletePersonFromAddressbook("1234567890");
+            AddressbookImplementation implementationObj = implementationObj = managementObj.openAddressbook("newUP");
+            AddressbookImplementation addressbookImplementation = (AddressbookImplementation) implementationObj;
+            int result = addressbookImplementation.deletePersonFromAddressbook("9422329006");
+            Assert.assertEquals(1, result);
         } catch (AddressBookCustomException e) {
-            Assert.assertEquals(AddressBookCustomException.ExceptionType.PERSON_NOT_FOUND, e.type);
+            e.printStackTrace();
+        }catch (IOException e) {
+            e.printStackTrace();
         }
     }
 
     @Test
-    public void sortAddressbook_ByLastname_ShouldReturnExpectedValue() throws IOException {
+    public void givenPersonId_DeletePersonFromAddressbook_ButPersonIdDoesNotExist_ShouldReturnOne() {
         try {
             AddresbookManagement managementObj = new AddresbookManagement();
-            AddressbookImplementation obj = managementObj.openAddressbook("MH");
+            AddressbookImplementation addressbookImplementation = managementObj.openAddressbook("newUP");
+            int result = addressbookImplementation.deletePersonFromAddressbook("1234567890");
+        } catch (AddressBookCustomException e) {
+            Assert.assertEquals(AddressBookCustomException.ExceptionType.PERSON_NOT_FOUND, e.type);
+        }catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
 
-            List<Person> personList = obj.sortByLastname();
+    @Test
+    public void sortAddressbook_ByLastname_ShouldReturnExpectedValue(){
+        try {
+            AddresbookManagement managementObj = new AddresbookManagement();
+            AddressbookImplementation addressbookImplementation = managementObj.openAddressbook("MH");
+            List<Person> personList = addressbookImplementation.sortByLastname();
             Assert.assertEquals("Awaghad", personList.get(0).getLastName());
-            obj.sortByPersonId();
+            addressbookImplementation.sortByPersonId();
         } catch (AddressBookCustomException e) {
+            e.printStackTrace();
+        }catch (IOException e) {
             e.printStackTrace();
         }
     }
@@ -185,11 +199,11 @@ public class testCasesAddressBook {
     public void sortAddressbook_ByZip_ShouldReturnExpectedValue() {
         try {
             AddresbookManagement managementObj = new AddresbookManagement();
-            AddressbookImplementation obj = managementObj.openAddressbook("newUP");
+            AddressbookImplementation addressbookImplementation = managementObj.openAddressbook("newUP");
 
-            List<Person> personList = obj.sortByZip();
+            List<Person> personList = addressbookImplementation.sortByZip();
             Assert.assertEquals(431203, personList.get(0).getAddress().getZip());
-            obj.sortByPersonId();
+            addressbookImplementation.sortByPersonId();
         } catch (IOException e) {
             e.printStackTrace();
         } catch (AddressBookCustomException e) {
@@ -200,8 +214,8 @@ public class testCasesAddressBook {
     @Test
     public void createdAddressBookSuccssfully_ShouldReturnOne() {
         try {
-            AddresbookManagement obj = new AddresbookManagement();
-            int result = obj.createAddressbook("UP");
+            AddresbookManagement addresbookManagement = new AddresbookManagement();
+            int result = addresbookManagement.createAddressbook("UP");
             Assert.assertEquals(1, result);
         } catch (IOException e) {
             e.printStackTrace();
@@ -213,8 +227,8 @@ public class testCasesAddressBook {
     @Test
     public void createdAddressBook_ifAlreadyExist_ShouldThrowException() {
         try {
-            AddresbookManagement obj = new AddresbookManagement();
-            int result = obj.createAddressbook("UP");
+            AddresbookManagement addresbookManagement = new AddresbookManagement();
+            int result = addresbookManagement.createAddressbook("UP");
         } catch (IOException e) {
             e.printStackTrace();
         } catch (AddressBookCustomException e) {
@@ -226,8 +240,8 @@ public class testCasesAddressBook {
     public void openAddressBookSuccessfully_ShouldReturnAddressbookImplementationClassObject() {
 
         try {
-            AddresbookManagement mgntObj = new AddresbookManagement();
-            AddressbookImplementation obj = mgntObj.openAddressbook("NewUP");
+            AddresbookManagement addresbookManagement = new AddresbookManagement();
+            AddressbookImplementation obj = addresbookManagement.openAddressbook("NewUP");
             Assert.assertTrue(obj instanceof AddressbookImplementation);
         } catch (IOException e) {
             e.printStackTrace();
@@ -239,8 +253,8 @@ public class testCasesAddressBook {
     @Test
     public void openAddressBook_AddressbookNameDoesNotExist_ShouldReturnOne() {
         try {
-            AddresbookManagement obj = new AddresbookManagement();
-            AddressbookImplementation result = obj.openAddressbook("AP");
+            AddresbookManagement addresbookManagement = new AddresbookManagement();
+            AddressbookImplementation result = addresbookManagement.openAddressbook("AP");
         } catch (IOException e) {
             e.printStackTrace();
         } catch (AddressBookCustomException e) {
@@ -251,9 +265,9 @@ public class testCasesAddressBook {
     @Test
     public void closeAddressBook_ifSuccessfully_ShouldReturnOne() {
         try {
-            AddresbookManagement obj = new AddresbookManagement();
-            AddressbookImplementation implObj = obj.openAddressbook("NewUP");
-            int result = obj.closeAddressbook(implObj);
+            AddresbookManagement addresbookManagement = new AddresbookManagement();
+            AddressbookImplementation addressbookImplementation = addresbookManagement.openAddressbook("NewUP");
+            int result = addresbookManagement.closeAddressbook(addressbookImplementation);
             Assert.assertEquals(1, result);
         } catch (IOException e) {
             e.printStackTrace();
@@ -265,9 +279,9 @@ public class testCasesAddressBook {
     @Test
     public void closeAddressBook_NoAddressbookIsOpen_ShouldThrowException() {
         try {
-            AddresbookManagement obj = new AddresbookManagement();
-            AddressbookImplementation personObj = obj.openAddressbook("AP");
-            Object result = obj.closeAddressbook(personObj);
+            AddresbookManagement addresbookManagement = new AddresbookManagement();
+            AddressbookImplementation addressbookImplementation = addresbookManagement.openAddressbook("AP");
+            Object result = addresbookManagement.closeAddressbook(addressbookImplementation);
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -279,9 +293,9 @@ public class testCasesAddressBook {
     @Test
     public void saveAddressBook_ifSavedSuccessfully_ShouldReturnOne() {
         try {
-            AddresbookManagement obj = new AddresbookManagement();
-            AddressbookImplementation personObj = obj.openAddressbook("MH");
-            int result = obj.saveAddresBook(personObj);
+            AddresbookManagement addresbookManagement = new AddresbookManagement();
+            AddressbookImplementation addressbookImplementation = addresbookManagement.openAddressbook("MH");
+            int result = addresbookManagement.saveAddresBook(addressbookImplementation);
             Assert.assertEquals(1, result);
         } catch (IOException e) {
             e.printStackTrace();
@@ -293,9 +307,9 @@ public class testCasesAddressBook {
     @Test
     public void saveAddressBook_dataNotSaved_ShouldThrowException() {
         try {
-            AddresbookManagement obj = new AddresbookManagement();
-            AddressbookImplementation personObj = obj.openAddressbook("AP");
-            Object result = obj.saveAddresBook(personObj);
+            AddresbookManagement addresbookManagement = new AddresbookManagement();
+            AddressbookImplementation addressbookImplementation = addresbookManagement.openAddressbook("AP");
+            Object result = addresbookManagement.saveAddresBook(addressbookImplementation);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (AddressBookCustomException e) {
@@ -306,9 +320,9 @@ public class testCasesAddressBook {
     @Test
     public void saveAsAddressBook_ifSaveAsSuccessfully_ShouldReturnOne() {
         try {
-            AddresbookManagement obj = new AddresbookManagement();
-            AddressbookImplementation personObj = obj.openAddressbook("newUP");
-            int result = obj.saveAsAddresBook(personObj, "NNEWUP");
+            AddresbookManagement addresbookManagement = new AddresbookManagement();
+            AddressbookImplementation addressbookImplementation = addresbookManagement.openAddressbook("newUP");
+            int result = addresbookManagement.saveAsAddresBook(addressbookImplementation, "NNEWUP");
             Assert.assertEquals(1, result);
         } catch (IOException e) {
             e.printStackTrace();
@@ -320,9 +334,9 @@ public class testCasesAddressBook {
     @Test
     public void saveAsAddressBook_ifUnableToSaveAs_ShouldThrowException() {
         try {
-            AddresbookManagement obj = new AddresbookManagement();
-            AddressbookImplementation personObj = obj.openAddressbook("NewUP");
-            Object result = obj.saveAsAddresBook(personObj, "newAP");
+            AddresbookManagement addresbookManagement = new AddresbookManagement();
+            AddressbookImplementation addressbookImplementation = addresbookManagement.openAddressbook("NewUP");
+            Object result = addresbookManagement.saveAsAddresBook(addressbookImplementation, "newAP");
         } catch (IOException e) {
             e.printStackTrace();
         } catch (AddressBookCustomException e) {
